@@ -258,7 +258,7 @@ function Countdown-Timer
     )
     if ($quiet)
     {
-        Write-Host "$Message: Waiting for $($Seconds/60) minutes. $($Seconds - $Count)"
+        Write-Host "${Message}: Waiting for $($Seconds/60) minutes. $($Seconds - $Count)"
         Start-Sleep -Seconds $Seconds
     } else {
         foreach ($Count in (1..$Seconds))
@@ -547,7 +547,7 @@ function Invoke-SpraySinglePassword
             {
                 Add-Content $OutFile $User`:$Password
             }
-            Write-Host -ForegroundColor Green "[*] SUCCESS! User:$User Password:$Password"
+            Write-Host -ForegroundColor Green "MATCH (u :User) WHERE u.name =~ '(?i)$User`@$DomainObject' SET u.ClearTextPassword = '$Password' SET u.owned = True;"
         }
         $curr_user += 1
         if (-not $Quiet)
